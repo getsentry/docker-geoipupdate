@@ -1,0 +1,8 @@
+#!/bin/sh
+
+interval=${INTERVAL:=86400}
+
+while true; do
+  /bin/geoipupdate -v
+  sleep $interval
+done

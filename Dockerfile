@@ -1,6 +1,6 @@
-FROM golang:1.12-alpine3.9 AS builder
+FROM golang:1.12-alpine3.10 AS builder
 
-ENV GEOIPUPDATE_VERSION 4.0.2
+ENV GEOIPUPDATE_VERSION 4.0.3
 
 RUN set -ex; \
     apk add --no-cache make; \
@@ -11,7 +11,7 @@ RUN set -ex; \
     go build -ldflags "-s -w -X main.version=$GEOIPUPDATE_VERSION -X main.defaultConfigFile=/etc/GeoIP.conf -X main.defaultDatabaseDirectory=/data"; \
     /go/src/geoipupdate/cmd/geoipupdate/geoipupdate --version
 
-FROM alpine:3.9
+FROM alpine:3.10
 
 RUN addgroup -S geoip && adduser -S -G geoip geoip
 

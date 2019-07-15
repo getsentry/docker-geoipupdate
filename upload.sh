@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 
 version="$(cat Dockerfile | awk '$1 == "ENV" && $2 == "GEOIPUPDATE_VERSION" { print $3; exit }')"
 repo=mattrobenolt/geoipupdate
